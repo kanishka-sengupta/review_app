@@ -1,0 +1,51 @@
+class <%= class_name.pluralize %>Controller < ApplicationController
+  before_action :set_<%= file_name %>, only: [:show, :update, :destroy]
+
+  # GET /<%= file_name.pluralize %>
+  def index
+    @<%= file_name.pluralize %> = <%= class_name %>.all
+
+    render json: @<%= file_name.pluralize %>
+  end
+
+  # GET /<%= file_name.pluralize %>/1
+  def show
+    render json: @<%= file_name %>
+  end
+
+  # POST /<%= file_name.pluralize %>
+  def create
+    @<%= file_name %> = <%= class_name %>.new(<%= file_name %>_params)
+
+    if @<%= file_name %>.save
+      render json: @<%= file_name %>, status: :created, location: @<%= file_name %>
+    else
+      render json: @<%= file_name %>.errors, status: :unprocessable_<%= file_name %>
+    end
+  end
+
+  # PATCH/PUT /<%= file_name.pluralize %>/1
+  def update
+    if @<%= file_name %>.update(<%= file_name %>_params)
+      render json: @<%= file_name %>
+    else
+      render json: @<%= file_name %>.errors, status: :unprocessable_<%= file_name %>
+    end
+  end
+
+  # DELETE /<%= file_name.pluralize %>/1
+  def destroy
+    @<%= file_name %>.destroy
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_<%= file_name %>
+      @<%= file_name %> = <%= class_name %>.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def <%= file_name %>_params
+      params.require(:<%= file_name %>).permit(:name)
+    end
+end
