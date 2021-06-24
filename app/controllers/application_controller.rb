@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
                 render json: {errors: e.message}, status: :unauthorized
         end
     end
+
+    def is_admin?
+        @current_user.admin
+    end
 end

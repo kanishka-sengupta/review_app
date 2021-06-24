@@ -1,6 +1,7 @@
 class <%= class_name.pluralize %>Controller < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_<%= file_name %>, only: [:show, :update, :destroy]
-
+  before_action :authorize_request
   # GET /<%= file_name.pluralize %>
   def index
     @<%= file_name.pluralize %> = <%= class_name %>.all
