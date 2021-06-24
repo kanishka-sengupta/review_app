@@ -22,8 +22,8 @@ class EntityGenerator < Rails::Generators::NamedBase
     route "resources :#{file_name.pluralize}, only: [:index,:show,:create,:update]"
   end
 
-  # def run_migration
-  #   rake "db:migrate"
-  # end
+  def run_migration
+    rake "db:migrate"
+  end
 
 end
