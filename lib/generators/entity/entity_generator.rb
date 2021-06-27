@@ -3,6 +3,14 @@ class EntityGenerator < Rails::Generators::NamedBase
 
   argument :fields, type: :array
 
+  def init
+    temp=[]
+    fields.each do |field|
+      temp.push(':'+field.split(':')[0])
+    end
+    @whitelist_string=temp.join(',')
+  end
+
   def create_model
     model_name_and_fields=fields.unshift(class_name)
     invoke 'active_record:model' , model_name_and_fields
@@ -22,8 +30,8 @@ class EntityGenerator < Rails::Generators::NamedBase
     route "resources :#{file_name.pluralize}, only: [:index,:show,:create,:update]"
   end
 
-  def run_migration
-    rake "db:migrate"
-  end
+  # def run_migration
+  #   rake "db:migrate"
+  # end
 
 end

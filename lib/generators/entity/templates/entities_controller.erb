@@ -47,6 +47,6 @@ class <%= class_name.pluralize %>Controller < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def <%= file_name %>_params
-      params.require(:<%= file_name %>).permit(:name)
+      params.require(:<%= file_name %>).permit( <%= @whitelist_string %>)
     end
 end
