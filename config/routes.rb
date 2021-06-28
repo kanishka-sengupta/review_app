@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   post '/entities', to: 'admin#create_entity'
   post '/sign-in', to: 'authentication#login'
+  resources :reviews, only: [:index, :show]
 end

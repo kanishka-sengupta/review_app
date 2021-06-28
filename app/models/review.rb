@@ -1,5 +1,5 @@
 class Review < ApplicationRecord
     belongs_to :reviewable,polymorphic: true   
     belongs_to :user
-    has_many :comments
+    has_many :comments,dependent: :destroy
 end
